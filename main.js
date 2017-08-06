@@ -95,7 +95,7 @@ function mDummy(){
         mDummy()
         }, 5000);
       }else{
-        console.log(chalk.magenta('The dummy is too powerful, you can\'t outrun his greatness.'))
+        console.log(chalk.magenta('The dummy is too powerful, you can\'t outdodge his greatness.'))
         setTimeout(function(){
         firstMonster()
         }, 5000);
