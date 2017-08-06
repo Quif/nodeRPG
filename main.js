@@ -68,10 +68,13 @@ var monsterGUI = [
 ];
 
 function calc(pDam, mDam, pHealth, mHealth){
-  if(mHealth - pDam <= 0){
-    console.log('something')
+  if(mHealth - pDam < pHealh - mDam){
     return Boolean(true)
-  } else{
+  } else if(mHealh - pDam === pHealh - mDam){
+    console.log(chalk.red('uh oh, you are in a tie. Looks like you need to train a bit more before fighing this monster!'))
+    var tie = "tie"
+    return tie
+  }else {
     return console.log(chalk.red('I\'m sorry but you have unfortunatley lost.\n You will now start from the beginning'))
     setTimeout(function(){
       clear()
