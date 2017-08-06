@@ -69,8 +69,8 @@ var monsterGUI = [
 
 function calc(pDam, mDam, pHealth, mHealth){
   if(mHealth - pDam <= 0){
-    console.log('something')
-    return Boolean(true)
+    console.log(chalk.cyan('Congratz, you won and gained ' + Math.round(player.level / 10 * 100) / 100 + ' xp!'))
+    gainXP(player.xp + player.level / 10)
   } else{
     return console.log(chalk.red('I\'m sorry but you have unfortunatley lost.\n You will now start from the beginning'))
     setTimeout(function(){
@@ -88,10 +88,7 @@ function mDummy(){
 
       if(answer === 'fight! (' + player.attack + ' damage per turn)'){
           // calc(player.attack, mTest.attack, player.health, mTest.health)
-          if(calc(player.attack, monsters.mDummy.attack, player.health, monsters.mDummy.health)){
-            console.log(chalk.magenta('Congratz, you won against the infamous DUMMY and gained .1 xp!'))
-            gainXP(.1)
-          }
+          calc(player.attack, monsters.mDummy.attack, player.health, monsters.mDummy.health)
       }else if(answer === 'run away'){
         console.log(chalk.magenta('He\'s a dummy. You can attack him once and he will die.'))
         setTimeout(function(){
