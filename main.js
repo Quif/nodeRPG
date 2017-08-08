@@ -68,10 +68,20 @@ var monsterGUI = [
 ];
 
 function calc(pDam, mDam, pHealth, mHealth){
+<<<<<<< HEAD
   if(mHealth - pDam <= 0){
     console.log(chalk.cyan('Congratz, you won and gained ' + Math.round(player.level / 10 * 100) / 100 + ' xp!'))
     gainXP(player.xp + player.level / 10)
   } else{
+=======
+  if(mHealth - pDam < pHealh - mDam){
+    return Boolean(true)
+  } else if(mHealh - pDam === pHealh - mDam){
+    console.log(chalk.red('uh oh, you are in a tie. Looks like you need to train a bit more before fighing this monster!'))
+    var tie = "tie"
+    return tie
+  }else {
+>>>>>>> 793897abd7b4e0389e9d5b8b9ebce1ec103d6535
     return console.log(chalk.red('I\'m sorry but you have unfortunatley lost.\n You will now start from the beginning'))
     setTimeout(function(){
       clear()
