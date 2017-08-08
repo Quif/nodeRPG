@@ -20,7 +20,8 @@ var Spinner     = CLI.Spinner;
 var fs          = require('fs');
 
 // username of user
-var username = JSON.parse(fs.readFileSync("./username.json"))
+
+var username3 = require('./username.js')
 
 // monster files
 var monsters = require('./monsters.js')
@@ -47,8 +48,11 @@ function gainXP(xp){
 
 //--- Start of code ---
 
+var useSave = []
+
 var player = new function(){
-  this.username = username.name,
+  this.username = [],
+  this.savedusername = username3.username2.username
   this.xp = xpee.xpe.xp,
   this.health = Math.round(this.xp/(750 / 100) * this.xp * 100),
   this.level =  Math.round(this.xp/(750 / 100) * this.xp * 100) / 100
@@ -67,21 +71,67 @@ var monsterGUI = [
   }
 ];
 
+function usernamefr(){
+    if(username3.username2.username === "#^&^@$^@#&^$@&*^@!^$!&^$*!&^%&!#^$&!#^%#&&&#&#&#&#&#$!^&#*!^"){
+        askName()
+                  for (var i = useSave.length; i > 0; i--) {
+ 
+ useSave.pop();
+ 
+}
+        useSave.push("nah")
+        
+    } else if(username3.username2.username != "#^&^@$^@#&^$@&*^@!^$!&^$*!&^%&!#^$&!#^%#&&&#&#&#&#&#$!^&#*!^"){
+var usesavee = 
+    {
+      type: 'confirm',
+      name: 'usesavedd',
+      message: `Would you like to use your previously saved name, ` + username3.username2.username,
+      default: true
+    }
+
+  inquirer.prompt(usesavee).then(function (answers) {
+        if(answers.usesavedd === true){
+          for (var i = useSave.length; i > 0; i--) {
+ 
+ useSave.pop();
+ 
+}
+            useSave.push("ye")
+            intro()
+    } else {
+          for (var i = useSave.length; i > 0; i--) {
+ 
+ useSave.pop();
+ 
+}
+      useSave.push("nah")
+      askName()
+    }
+  })
+    }
+}
+
+function name(){
+    if(useSave[0] === "ye"){
+        return player.savedusername
+    }
+    if(useSave[0] === "nah"){
+        return player.username[0]
+    }
+}
+
 function calc(pDam, mDam, pHealth, mHealth){
-<<<<<<< HEAD
-  if(mHealth - pDam <= 0){
+    console.log(
+    'does it even run')
+  if(mHealth - pDam < pHealh - mDam === true){
     console.log(chalk.cyan('Congratz, you won and gained ' + Math.round(player.level / 10 * 100) / 100 + ' xp!'))
     gainXP(player.xp + player.level / 10)
-  } else{
-=======
-  if(mHealth - pDam < pHealh - mDam){
-    return Boolean(true)
   } else if(mHealh - pDam === pHealh - mDam){
     console.log(chalk.red('uh oh, you are in a tie. Looks like you need to train a bit more before fighing this monster!'))
     var tie = "tie"
     return tie
   }else {
->>>>>>> 793897abd7b4e0389e9d5b8b9ebce1ec103d6535
     return console.log(chalk.red('I\'m sorry but you have unfortunatley lost.\n You will now start from the beginning'))
     setTimeout(function(){
       clear()
@@ -90,12 +140,13 @@ function calc(pDam, mDam, pHealth, mHealth){
   }
 }
 
+console.log(player.health - monsters.mDummy.attack < monsters.mDummy.health - player.attack)
+
 function mDummy(){
   console.log(chalk.red('Uh oh, your first monster has appeared! He appears to be a dummy! \n He appears to do no damage and have 1 health'))
   inquirer.prompt(monsterGUI).then(function (answers) {
     var answer = answers["monsterGUI"]
     console.log(chalk.magenta('\nYou have chosen: ' + answer));
-
       if(answer === 'fight! (' + player.attack + ' damage per turn)'){
           // calc(player.attack, mTest.attack, player.health, mTest.health)
           calc(player.attack, monsters.mDummy.attack, player.health, monsters.mDummy.health)
@@ -145,30 +196,32 @@ var name =  {
   }
 
   inquirer.prompt(name).then(function (answers) {
-    fs.writeFile("./username.json", JSON.stringify(answers), function(err) {
-      if(err) {
-          return console.log(err);
-        }
-      });
+    fs.writeFile("/Users/samjouhari/Desktop/NodeRPG/username.js", "var username2 = new function(){\n  this.username = \"" + answers.name + "\"\n}\n\nexports.username2 = username2", function (err) {
+          if (err) {
+              return console.log("Error writing file: " + err);
+          }
+      })
+      player.username.push(answers.name)
       setTimeout(function(){
         intro()
       }, 1000);
   });
 }
 
-askName()
+usernamefr()
 
 function intro(){
   var Introduction = [
     {
       type: 'confirm',
       name: 'Introduction',
-      message: `Hello ` + player.username + `, welcome to the nodejs RPG! Are you ready to begin?`,
+      message: `Hello ` + name() + `, welcome to the nodejs RPG! Are you ready to begin?`,
       default: true
     }
   ];
 
   inquirer.prompt(Introduction).then(function (answers) {
+      console.log(name())
         if(answers.Introduction === true){
           firstMonster()
     } else {
