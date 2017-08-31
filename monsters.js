@@ -14,10 +14,4 @@ var mLampMan = new function(){
 
 exports.mDummy = mDummy
 
-<<<<<<< HEAD
 exports.mLampMan = mLampMan
-=======
-exports.mLampMan = mLampMan
-
-
->>>>>>> a83d607fe4ffaa2b8ac23d1a29f9e1fcd0df6604
