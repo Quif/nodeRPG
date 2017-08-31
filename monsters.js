@@ -15,7 +15,3 @@ var mLampMan = new function(){
 exports.mDummy = mDummy
 
 exports.mLampMan = mLampMan
-
-// var mLampMan = new function(){
-//  this.name = "Lamp Man"
-// }

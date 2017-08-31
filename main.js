@@ -48,6 +48,8 @@ function gainXP(xp){
 
 //--- Start of code ---
 
+var stage = []
+
 var useSave = []
 
 var player = new function(){
@@ -75,38 +77,38 @@ function usernamefr(){
     if(username3.username2.username === "#^&^@$^@#&^$@&*^@!^$!&^$*!&^%&!#^$&!#^%#&&&#&#&#&#&#$!^&#*!^"){
         askName()
                   for (var i = useSave.length; i > 0; i--) {
- 
+
  useSave.pop();
- 
+
 }
         useSave.push("nah")
-        
+
     } else if(username3.username2.username != "#^&^@$^@#&^$@&*^@!^$!&^$*!&^%&!#^$&!#^%#&&&#&#&#&#&#$!^&#*!^"){
-var usesavee = 
+var usesavee =
     {
       type: 'confirm',
       name: 'usesavedd',
-      message: `Would you like to use your previously saved name, ` + username3.username2.username,
+      message: `Welcome back ` + username3.username2.username + ', would you like to change your name?',
       default: true
     }
 
   inquirer.prompt(usesavee).then(function (answers) {
-        if(answers.usesavedd === true){
+        if(answers.usesavedd === false){
           for (var i = useSave.length; i > 0; i--) {
- 
+
  useSave.pop();
- 
+
 }
             useSave.push("ye")
             intro()
     } else {
           for (var i = useSave.length; i > 0; i--) {
- 
+
  useSave.pop();
- 
+
 }
       useSave.push("nah")
-      askName()
+      changeName()
     }
   })
     }
@@ -122,15 +124,16 @@ function name(){
 }
 
 function calc(pDam, mDam, pHealth, mHealth){
-    console.log(
-    'does it even run')
-  if(mHealth - pDam < pHealh - mDam === true){
+
+  if(mHealth - pDam < pHealth - mDam){
     console.log(chalk.cyan('Congratz, you won and gained ' + Math.round(player.level / 10 * 100) / 100 + ' xp!'))
     gainXP(player.xp + player.level / 10)
-  } else if(mHealh - pDam === pHealh - mDam){
-    console.log(chalk.red('uh oh, you are in a tie. Looks like you need to train a bit more before fighing this monster!'))
-    var tie = "tie"
-    return tie
+  } else if(!mHealth - pDam < pHealth - mDam){
+    return console.log(chalk.red('I\'m sorry but you have unfortunatley lost.\n You will now start from the beginning'))
+    setTimeout(function(){
+      clear()
+      intro()
+    }, 5000);
   }else {
     return console.log(chalk.red('I\'m sorry but you have unfortunatley lost.\n You will now start from the beginning'))
     setTimeout(function(){
@@ -208,6 +211,28 @@ var name =  {
   });
 }
 
+function changeName(){
+var name =  {
+  type: 'input',
+  name: 'name',
+  message: 'What would you like to change your name to?',
+  default: 'Undefined'
+  }
+
+  inquirer.prompt(name).then(function (answers) {
+    fs.writeFile("/Users/samjouhari/Desktop/NodeRPG/username.js", "var username2 = new function(){\n  this.username = \"" + answers.name + "\"\n}\n\nexports.username2 = username2", function (err) {
+          if (err) {
+              return console.log("Error writing file: " + err);
+          }
+      })
+      player.username.push(answers.name)
+      setTimeout(function(){
+        intro()
+      }, 1000);
+  });
+}
+
+
 usernamefr()
 
 function intro(){
@@ -221,7 +246,6 @@ function intro(){
   ];
 
   inquirer.prompt(Introduction).then(function (answers) {
-      console.log(name())
         if(answers.Introduction === true){
           firstMonster()
     } else {

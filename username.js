@@ -1,5 +1,5 @@
 var username2 = new function(){
-  this.username = "wOAH"
+  this.username = "#^&^@$^@#&^$@&*^@!^$!&^$*!&^%&!#^$&!#^%#&&&#&#&#&#&#$!^&#*!^"
 }
 
 exports.username2 = username2
