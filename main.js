@@ -124,8 +124,14 @@ function name(){
 }
 
 function calc(pDam, mDam, pHealth, mHealth){
+<<<<<<< HEAD
 
   if(mHealth - pDam < pHealth - mDam){
+=======
+    console.log(
+    'does it even run')
+  if(mHealth - pDam < pHealth - mDam === true){
+>>>>>>> a83d607fe4ffaa2b8ac23d1a29f9e1fcd0df6604
     console.log(chalk.cyan('Congratz, you won and gained ' + Math.round(player.level / 10 * 100) / 100 + ' xp!'))
     gainXP(player.xp + player.level / 10)
   } else if(!mHealth - pDam < pHealth - mDam){
