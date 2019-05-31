@@ -31,7 +31,7 @@ var monsters = require('./monsters.js')
 var xpee = require('./xp.js')
 
 if(xpee.xpe.xp < 2.74){
-  fs.writeFile("/Users/samjouhari/Desktop/NodeRPG/xp.js", "var xpe = new function(){\n  this.xp = 2.74\n}\n\nexports.xpe = xpe", function (err) {
+  fs.writeFile(__dirname + "/xp.js", "var xpe = new function(){\n  this.xp = 2.74\n}\n\nexports.xpe = xpe", function (err) {
       if (err) {
           return console.log("Error writing file: " + err);
       }
@@ -39,7 +39,7 @@ if(xpee.xpe.xp < 2.74){
 }
 
 function gainXP(xp){
-      fs.writeFile("/Users/samjouhari/Desktop/NodeRPG/xp.js", "var xpe = new function(){\n  this.xp = " + xp + "\n}\n\nexports.xpe = xpe", function (err) {
+      fs.writeFile(__dirname + "/xp.js", "var xpe = new function(){\n  this.xp = " + xp + "\n}\n\nexports.xpe = xpe", function (err) {
           if (err) {
               return console.log("Error writing file: " + err);
           }
@@ -204,7 +204,7 @@ var name =  {
   }
 
   inquirer.prompt(name).then(function (answers) {
-    fs.writeFile("/Users/samjouhari/Desktop/NodeRPG/username.js", "var username2 = new function(){\n  this.username = \"" + answers.name + "\"\n}\n\nexports.username2 = username2", function (err) {
+    fs.writeFile(__dirname + "/username.js", "var username2 = new function(){\n  this.username = \"" + answers.name + "\"\n}\n\nexports.username2 = username2", function (err) {
           if (err) {
               return console.log("Error writing file: " + err);
           }
@@ -225,7 +225,7 @@ var name =  {
   }
 
   inquirer.prompt(name).then(function (answers) {
-    fs.writeFile("/Users/samjouhari/Desktop/NodeRPG/username.js", "var username2 = new function(){\n  this.username = \"" + answers.name + "\"\n}\n\nexports.username2 = username2", function (err) {
+    fs.writeFile(__dirname + "/username.js", "var username2 = new function(){\n  this.username = \"" + answers.name + "\"\n}\n\nexports.username2 = username2", function (err) {
           if (err) {
               return console.log("Error writing file: " + err);
           }
