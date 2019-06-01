@@ -133,9 +133,8 @@ function calc(pDam, mDam, pHealth, mHealth){
 
   if(mHealth - pDam < pHealth - mDam === true){
 
-    console.log(chalk.cyan('Congratz, you won and gained ' + Math.round(player.level / 10 * 100) / 100 + ' xp!'))
+    console.log(chalk.cyan('Congratz, you won and gained ' + Math.round(player.level / 10 * 100) / 100 + ' xp, giving you a total xp of ' + Math.round(xp * 100)/100 + '!'))
     gainXP(xp + player.level / 10)
-    console.log(xp)
   } else if(!mHealth - pDam < pHealth - mDam){
     return console.log(chalk.red('I\'m sorry but you have unfortunatley lost.\n You will now start from the beginning'))
     setTimeout(function(){
